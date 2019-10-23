@@ -6,7 +6,7 @@ Created on Tue Oct 22 16:29:05 2019
 @author: amaury
 """
 
-class JobType:
+class Profession:
     """Classe définissant une profession avec:
     - id : entier
     - name : string

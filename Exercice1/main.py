@@ -5,47 +5,23 @@ Created on Tue Oct 22 16:35:15 2019
 
 @author: amaury
 """
-import csv
-import jobType
-import jobOffer
+
+import usefulFunctions
+
 def main():
-    """Main function :
-    No input
-    Output : the desired tab"""
+    """Main function
+    Returned the desired tab of the exercise"""
 
-    # Read the job offers CSV file and fill a list with it
-    jobOfferList = []
-    with open('/home/amaury/Bureau/Test Technique - QA Engineer/appendix/technical-test-jobs.csv') as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=",")
-        header = True
-        for row in csv_reader:
-            if header:
-                print(f'Job offers column names are {", ".join(row)}')
-                header = False
-            else:
-                job = jobOffer.JobOffer(row[0], row[1], row[2], row[3], row[4])
-                jobOfferList += [job]
-        print("Number of imported offers : " + str(len(jobOfferList)) + "\n")
+    # Read the CSV and get its content
+    jobOfferList, professionsList = usefulFunctions.readCsv()
     
-    # Read the job types CSV file and fill a list with it
-    jobTypeList = []
-    with open('/home/amaury/Bureau/Test Technique - QA Engineer/appendix/technical-test-professions.csv') as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=",")
-        header = True
-        for row in csv_reader:
-            if header:
-                print(f'Job types column names are {", ".join(row)}')
-                header = False
-            else:
-                job = jobType.JobType(row[0], row[1], row[2])
-                jobTypeList += [job]
-        print("Number of imported types : " + str(len(jobTypeList)))
+    # Create an empty output tab with the right number of lines and columns
+    finalTab = usefulFunctions.createEmpty(jobOfferList, professionsList)
     
-    #Create an empty output tab with all the lines and columns
+    # Fill the tab
+    finalTab = usefulFunctions.fillTabExceptTotals(jobOfferList, professionsList, finalTab)
     
-    #Update the output tab
-    
-    #Show the tab
-    
-
+    # Update the totals 
+    finalTab = usefulFunctions.fillTotals(finalTab)
+ 
 main()  
