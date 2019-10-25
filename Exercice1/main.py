@@ -23,5 +23,9 @@ def main():
     
     # Update the totals 
     finalTab = usefulFunctions.fillTotals(finalTab)
- 
+    
+    print("\nTable des métiers par profession et type de contrat : ")
+    for line in finalTab:
+        print(line)    
+    
 main()  

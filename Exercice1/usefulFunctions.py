@@ -27,7 +27,6 @@ def readCsv():
             else:
                 job = jobOffer.JobOffer(row[0], row[1], row[2], row[3], row[4]) # Create a JobOffer object
                 jobOfferList += [job] # Add it to the full list
-        print("Number of imported offers : " + str(len(jobOfferList)) + "\n") # Check
     
     # Read the job types CSV file and fill a list with all its content
     professionList = []
@@ -40,7 +39,6 @@ def readCsv():
             else:
                 job = profession.Profession(row[0], row[1], row[2]) # Create a JobType object
                 professionList += [job] # Add it to the list
-        print("Number of imported types : " + str(len(professionList))) # Check
     
     return ([jobOfferList, professionList])
 
@@ -136,21 +134,9 @@ def fillTotals(finalTab):
     
     # Global
     total = 0
-    for i in range(2, len(finalTab[0])):
+    for i in range(2, len(finalTab)):
         total+=finalTab[i][1]
     finalTab[1][1]=total
-    
-    # Check the total
-    total = 0
-    for j in range(2, len(finalTab)):
-        total+=finalTab[1][j]
-    # If the sum of the lines and columns' totals are equal, print the tab
-    if total==finalTab[1][1]: 
-        print("\nFinalTab : ")
-        for line in finalTab:
-            print(line)    
-    else :
-        print("ERROR 000 : Total number of offers is different in lines and columns.")
     
     return finalTab
     
